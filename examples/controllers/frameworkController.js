@@ -18,7 +18,7 @@ const getAllFrameworks = async (req, res) => {
 
 
 const addComment = async (req, res) => {
-    const { frameworkId } = req.params; // Only frameworkId
+    const { frameworkId } = req.params; 
     const { user, comment } = req.body;
 
     try {
@@ -33,10 +33,10 @@ const addComment = async (req, res) => {
             return res.status(404).json({ message: 'Tutorial not found' });
         }
 
-        tutorial.comments.push({ user, comment, date: new Date() }); // Current date
+        tutorial.comments.push({ user, comment, date: new Date() }); 
         await framework.save();
 
-        res.status(201).json(tutorial); // Respond with the updated tutorial
+        res.status(201).json(tutorial); 
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
