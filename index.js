@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const programmingLanguagesRoutes = require('./routes/programmingLanguageRoutes');
+const programmingLanguagesRoutes = require('./examples/routes/programmingLanguageRoutes');
+const frameworksRoutes = require('./examples/routes/frameworkRoutes');
+
 
 const app = express();
 const port = 3000;
@@ -12,6 +14,8 @@ mongoose.connect('mongodb://localhost:27017/RESTbasics')
     .catch(err => console.error('Failed to connect to MongoDB', err));
 
 app.use('/api/programming-languages', programmingLanguagesRoutes);
+app.use('/api/frameworks', frameworksRoutes);
+
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
