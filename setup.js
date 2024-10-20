@@ -7,66 +7,77 @@ mongoose.connect('mongodb://localhost:27017/RESTbasics')
     .catch(err => console.error('Failed to connect to MongoDB', err));
 
 async function populateDB() {
+    await ProgrammingLanguage.deleteMany();
     await ProgrammingLanguage.insertMany([
         {
-            name: "JavaScript",
-            information: "A versatile, high-level programming language.",
-            releaseYear: 1995,
-            paradigm: ["Object-oriented", "Functional", "Imperative"]
+            "name": "JavaScript",
+            "information": "A versatile, high-level programming language.",
+            "releaseYear": 1995,
+            "paradigm": ["Object-oriented", "Functional", "Imperative"],
+            "docs": ["https://developer.mozilla.org/en-US/docs/Web/JavaScript"]
         },
         {
-            name: "Python",
-            information: "Popular for web development, AI, and scripting.",
-            releaseYear: 1991,
-            paradigm: ["Object-oriented", "Procedural", "Functional"]
+            "name": "Python",
+            "information": "Popular for web development, AI, and scripting.",
+            "releaseYear": 1991,
+            "paradigm": ["Object-oriented", "Procedural", "Functional"],
+            "docs": ["https://docs.python.org/3/"]
         },
         {
-            name: "Java",
-            information: "Used for building large-scale enterprise applications.",
-            releaseYear: 1995,
-            paradigm: ["Object-oriented", "Concurrent"]
+            "name": "Java",
+            "information": "Used for building large-scale enterprise applications.",
+            "releaseYear": 1995,
+            "paradigm": ["Object-oriented", "Concurrent"],
+            "docs": ["https://docs.oracle.com/en/java/"]
         },
         {
-            name: "C#",
-            information: "Developed by Microsoft, primarily for Windows applications.",
-            releaseYear: 2000,
-            paradigm: ["Object-oriented", "Functional", "Declarative"]
+            "name": "C#",
+            "information": "Developed by Microsoft, primarily for Windows applications.",
+            "releaseYear": 2000,
+            "paradigm": ["Object-oriented", "Functional", "Declarative"],
+            "docs": ["https://learn.microsoft.com/en-us/dotnet/csharp/"]
         },
         {
-            name: "C++",
-            information: "An extension of C, known for system/software development.",
-            releaseYear: 1985,
-            paradigm: ["Object-oriented", "Procedural", "Generic"]
+            "name": "C++",
+            "information": "An extension of C, known for system/software development.",
+            "releaseYear": 1985,
+            "paradigm": ["Object-oriented", "Procedural", "Generic"],
+            "docs": ["https://en.cppreference.com/w/"]
         },
         {
-            name: "Ruby",
-            information: "Known for its elegant syntax and web development.",
-            releaseYear: 1995,
-            paradigm: ["Object-oriented", "Imperative", "Functional"]
+            "name": "Ruby",
+            "information": "Known for its elegant syntax and web development.",
+            "releaseYear": 1995,
+            "paradigm": ["Object-oriented", "Imperative", "Functional"],
+            "docs": ["https://www.ruby-lang.org/en/documentation/"]
         },
         {
-            name: "Go",
-            information: "Created by Google, known for its simplicity and performance.",
-            releaseYear: 2009,
-            paradigm: ["Concurrent", "Procedural", "Functional"]
+            "name": "Go",
+            "information": "Created by Google, known for its simplicity and performance.",
+            "releaseYear": 2009,
+            "paradigm": ["Concurrent", "Procedural", "Functional"],
+            "docs": ["https://go.dev/doc/"]
         },
         {
-            name: "Swift",
-            information: "Apple's programming language for iOS and macOS development.",
-            releaseYear: 2014,
-            paradigm: ["Object-oriented", "Protocol-oriented", "Functional"]
+            "name": "Swift",
+            "information": "Apple's programming language for iOS and macOS development.",
+            "releaseYear": 2014,
+            "paradigm": ["Object-oriented", "Protocol-oriented", "Functional"],
+            "docs": ["https://docs.swift.org/swift-book/"]
         },
         {
-            name: "Rust",
-            information: "Focuses on safety and performance, suitable for system programming.",
-            releaseYear: 2010,
-            paradigm: ["Concurrent", "Functional", "Imperative"]
+            "name": "Rust",
+            "information": "Focuses on safety and performance, suitable for system programming.",
+            "releaseYear": 2010,
+            "paradigm": ["Concurrent", "Functional", "Imperative"],
+            "docs": ["https://doc.rust-lang.org/"]
         },
         {
-            name: "Kotlin",
-            information: "A modern language that runs on the Java Virtual Machine (JVM).",
-            releaseYear: 2011,
-            paradigm: ["Object-oriented", "Functional"]
+            "name": "Kotlin",
+            "information": "A modern language that runs on the Java Virtual Machine (JVM).",
+            "releaseYear": 2011,
+            "paradigm": ["Object-oriented", "Functional"],
+            "docs": ["https://kotlinlang.org/docs/home.html"]
         }
     ]);
     console.log("programming_languages collection created");

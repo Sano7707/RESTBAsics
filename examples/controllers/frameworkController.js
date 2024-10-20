@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Framework = require('../models/Framework');
+const Framework = require('../models/framework');
 
 
 const getAllFrameworks = async (req, res) => {
@@ -18,7 +18,7 @@ const getAllFrameworks = async (req, res) => {
 
 
 const addComment = async (req, res) => {
-    const { frameworkId } = req.params; 
+    const { frameworkId } = req.params;
     const { user, comment } = req.body;
 
     try {
@@ -27,16 +27,16 @@ const addComment = async (req, res) => {
             return res.status(404).json({ message: 'Framework not found' });
         }
 
-        const tutorial = framework.tutorial; 
+        const tutorial = framework.tutorial;
 
         if (!tutorial) {
             return res.status(404).json({ message: 'Tutorial not found' });
         }
 
-        tutorial.comments.push({ user, comment, date: new Date() }); 
+        tutorial.comments.push({ user, comment, date: new Date() });
         await framework.save();
 
-        res.status(201).json(tutorial); 
+        res.status(201).json(tutorial);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
