@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const ProgrammingLanguage = require('./examples/models/programmingLanguage');
 const Framework = require('./examples/models/framework');
+const LangFramework = require('./examples/models/langFramework');
 
 mongoose.connect('mongodb://localhost:27017/RESTbasics')
     .then(() => console.log('Connected to MongoDB'))
@@ -82,12 +83,11 @@ async function populateDB() {
     ]);
     console.log("programming_languages collection created");
 
+    await Framework.deleteMany();
     await Framework.insertMany([
         {
-            "framework": {
-                "name": "Express",
-                "documentationLink": "https://expressjs.com/"
-            },
+            "name": "Express",
+            "documentationLink": "https://expressjs.com/",
             "tutorial": {
                 "title": "Creating a Web Server with Express",
                 "tutorialLink": "https://expressjs.com/en/starter/hello-world.html",
@@ -105,14 +105,11 @@ async function populateDB() {
                         "date": "2021-06-15T00:00:00.000Z"
                     }
                 ]
-            },
-            "language": "JavaScript"
+            }
         },
         {
-            "framework": {
-                "name": "Flask",
-                "documentationLink": "https://flask.palletsprojects.com/en/latest/"
-            },
+            "name": "Flask",
+            "documentationLink": "https://flask.palletsprojects.com/en/latest/",
             "tutorial": {
                 "title": "Building a Web App with Flask",
                 "tutorialLink": "https://flask.palletsprojects.com/en/latest/tutorial/",
@@ -124,14 +121,11 @@ async function populateDB() {
                         "date": "2022-03-10T00:00:00.000Z"
                     }
                 ]
-            },
-            "language": "Python"
+            }
         },
         {
-            "framework": {
-                "name": "Spring Boot",
-                "documentationLink": "https://spring.io/projects/spring-boot"
-            },
+            "name": "Spring Boot",
+            "documentationLink": "https://spring.io/projects/spring-boot",
             "tutorial": {
                 "title": "Building a REST API with Spring Boot",
                 "tutorialLink": "https://spring.io/guides/gs/rest-service/",
@@ -143,14 +137,11 @@ async function populateDB() {
                         "date": "2023-08-22T00:00:00.000Z"
                     }
                 ]
-            },
-            "language": "Java"
+            }
         },
         {
-            "framework": {
-                "name": "ASP.NET Core",
-                "documentationLink": "https://docs.microsoft.com/en-us/aspnet/core/"
-            },
+            "name": "ASP.NET Core",
+            "documentationLink": "https://docs.microsoft.com/en-us/aspnet/core/",
             "tutorial": {
                 "title": "Building a Web API with ASP.NET Core",
                 "tutorialLink": "https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api",
@@ -162,14 +153,11 @@ async function populateDB() {
                         "date": "2024-05-11T00:00:00.000Z"
                     }
                 ]
-            },
-            "language": "C#"
+            }
         },
         {
-            "framework": {
-                "name": "Poco",
-                "documentationLink": "https://pocoproject.org/docs/"
-            },
+            "name": "Poco",
+            "documentationLink": "https://pocoproject.org/docs/",
             "tutorial": {
                 "title": "Building a Web Server with Poco",
                 "tutorialLink": "https://pocoproject.org/docs/tutorials.html",
@@ -181,14 +169,11 @@ async function populateDB() {
                         "date": "2021-07-20T00:00:00.000Z"
                     }
                 ]
-            },
-            "language": "C++"
+            }
         },
         {
-            "framework": {
-                "name": "Ruby on Rails",
-                "documentationLink": "https://guides.rubyonrails.org/"
-            },
+            "name": "Ruby on Rails",
+            "documentationLink": "https://guides.rubyonrails.org/",
             "tutorial": {
                 "title": "Getting Started with Ruby on Rails",
                 "tutorialLink": "https://guides.rubyonrails.org/getting_started.html",
@@ -200,14 +185,11 @@ async function populateDB() {
                         "date": "2023-12-01T00:00:00.000Z"
                     }
                 ]
-            },
-            "language": "Ruby"
+            }
         },
         {
-            "framework": {
-                "name": "Gin",
-                "documentationLink": "https://github.com/gin-gonic/gin"
-            },
+            "name": "Gin",
+            "documentationLink": "https://github.com/gin-gonic/gin",
             "tutorial": {
                 "title": "Building a Web Server with Gin",
                 "tutorialLink": "https://gin-gonic.com/docs/",
@@ -219,14 +201,11 @@ async function populateDB() {
                         "date": "2020-09-05T00:00:00.000Z"
                     }
                 ]
-            },
-            "language": "Go"
+            }
         },
         {
-            "framework": {
-                "name": "Vapor",
-                "documentationLink": "https://vapor.codes/docs"
-            },
+            "name": "Vapor",
+            "documentationLink": "https://vapor.codes/docs",
             "tutorial": {
                 "title": "Building a Web App with Vapor",
                 "tutorialLink": "https://docs.vapor.codes/4.0/hello-world/",
@@ -238,14 +217,11 @@ async function populateDB() {
                         "date": "2022-11-11T00:00:00.000Z"
                     }
                 ]
-            },
-            "language": "Swift"
+            }
         },
         {
-            "framework": {
-                "name": "Rocket",
-                "documentationLink": "https://rocket.rs/"
-            },
+            "name": "Rocket",
+            "documentationLink": "https://rocket.rs/",
             "tutorial": {
                 "title": "Creating a Web Server with Rocket",
                 "tutorialLink": "https://rocket.rs/v0.5-rc/guide/quickstart/",
@@ -257,14 +233,11 @@ async function populateDB() {
                         "date": "2021-02-14T00:00:00.000Z"
                     }
                 ]
-            },
-            "language": "Rust"
+            }
         },
         {
-            "framework": {
-                "name": "Ktor",
-                "documentationLink": "https://ktor.io/docs/"
-            },
+            "name": "Ktor",
+            "documentationLink": "https://ktor.io/docs/",
             "tutorial": {
                 "title": "Building a REST API with Ktor",
                 "tutorialLink": "https://ktor.io/docs/creating-http-apis.html",
@@ -276,11 +249,55 @@ async function populateDB() {
                         "date": "2023-05-30T00:00:00.000Z"
                     }
                 ]
-            },
-            "language": "Kotlin"
+            }
         }
     ]);
     console.log("frameworks collection created");
+
+
+    await LangFramework.deleteMany();
+    await LangFramework.insertMany([
+        {
+            language: "JavaScript",
+            frameworks: ["Express", "React"]
+        },
+        {
+            language: "Python",
+            frameworks: ["Flask"]
+        },
+        {
+            language: "Java",
+            frameworks: ["Spring Boot"]
+        },
+        {
+            language: "C#",
+            frameworks: ["ASP.NET Core"]
+        },
+        {
+            language: "C++",
+            frameworks: ["Poco"]
+        },
+        {
+            language: "Ruby",
+            frameworks: ["Ruby on Rails"]
+        },
+        {
+            language: "Go",
+            frameworks: ["Gin"]
+        },
+        {
+            language: "Swift",
+            frameworks: ["Vapor"]
+        },
+        {
+            language: "Rust",
+            frameworks: ["Rocket"]
+        },
+        {
+            language: "Kotlin",
+            frameworks: ["Ktor"]
+        }
+    ]);
 };
 
 populateDB().then(() => {
