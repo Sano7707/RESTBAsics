@@ -5,7 +5,7 @@ const langFrameworkSchema = new mongoose.Schema({
   frameworks: [
     { type: String, required: true }
   ]
-}, { collection: 'frameworks' });
+}, { collection: 'langFramework' });
 
 const LangFramework = mongoose.model('LangFramework', langFrameworkSchema);
 

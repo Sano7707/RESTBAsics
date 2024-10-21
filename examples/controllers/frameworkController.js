@@ -9,7 +9,7 @@ const getAllFrameworks = async (req, res) => {
     }
 
     try {
-        const frameworks = await Framework.find().sort();
+        const frameworks = await Framework.find();
         res.json(frameworks);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -34,9 +34,10 @@ const addComment = async (req, res) => {
         }
 
         tutorial.comments.push({ user, comment, date: new Date() });
+
         await framework.save();
 
-        res.status(201).json(tutorial);
+        res.status(201).json(framework);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -52,7 +53,7 @@ const updateLink = async (req, res) => {
         }
 
         if (req.body.documentationLink) {
-            framework.framework.documentationLink = req.body.documentationLink;
+            framework.documentationLink = req.body.documentationLink;
         }
 
         if (req.body.tutorialLink) {
@@ -61,11 +62,12 @@ const updateLink = async (req, res) => {
 
         const updatedFramework = await framework.save();
 
-        res.json(updatedFramework);
+        res.json({ message: 'Links updated successfully', framework: updatedFramework });
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
 };
+
 
 module.exports = {
     getAllFrameworks,
