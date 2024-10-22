@@ -108,6 +108,22 @@ async function populateDB() {
             }
         },
         {
+            "name": "React",
+            "documentationLink": "https://react.dev/",
+            "tutorial": {
+                "title": "React Tutorial",
+                "tutorialLink": "https://www.w3schools.com/REACT/DEFAULT.ASP",
+                "comments": [
+                    {
+                        "_id": "6712b93c5a53871b8162bb52",
+                        "user": "John",
+                        "comment": "Clear explanation, it is starting to make more sense now.",
+                        "date": "2021-01-01T00:00:00.000Z"
+                    }
+                ]
+            }
+        },
+        {
             "name": "Flask",
             "documentationLink": "https://flask.palletsprojects.com/en/latest/",
             "tutorial": {
@@ -298,6 +314,7 @@ async function populateDB() {
             frameworks: ["Ktor"]
         }
     ]);
+    console.log("LangFramework collection created");
 };
 
 populateDB().then(() => {
