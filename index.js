@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const programmingLanguagesRoutes = require('./examples/routes/programmingLanguageRoutes');
-const frameworksRoutes = require('./examples/routes/frameworkRoutes');
-const exercises = require('./exercises/routes/exercises');
+const programmingLanguagesRoutes = require('./routes/examples/programmingLanguageRoutes');
+const frameworksRoutes = require('./routes/examples/frameworkRoutes');
+const exercisesRoutes = require('./routes/exercises/exercises');
 
 
 const app = express();
@@ -16,8 +16,7 @@ mongoose.connect('mongodb://localhost:27017/RESTbasics')
 
 app.use('/api/programming-languages', programmingLanguagesRoutes);
 app.use('/api/frameworks', frameworksRoutes);
-
-app.use('/languages', exercises);
+app.use('/languages', exercisesRoutes);
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
