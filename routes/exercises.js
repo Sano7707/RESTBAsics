@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ProgrammingLanguage = require('../../models/programmingLanguage');
-const Framework = require('../../models/framework');
-const langFramework = require('../../models/langFramework');
+const ProgrammingLanguage = require('../models/programmingLanguage'); // Our model
+const Framework = require('../models/framework');
 
 
 // Exercise 1: GET all documentation links for a language
@@ -13,9 +12,11 @@ router.get('/:language/docs', async function(req, res) {
         // GET a language by name
         // - Mongoose function to use: Model.findOne() (https://mongoosejs.com/docs/api/model.html#Model.findOne())
         // - Example from the documentation: await Adventure.findOne({ country: 'Croatia' }).exec();
-        const language = await ProgrammingLanguage.findOne({ name: lang }).exec();
+        // ...
+
         // Send the "docs" array of the retrieved language as a json object
-        res.json(language.docs);
+        // ...
+
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -27,18 +28,19 @@ router.get('/:paradigm', async function(req, res) {
         const paradigm = req.params.paradigm;
         // YOUR CODE
         // GET all languages (hint: Example 1)
-        const allLanguages = await ProgrammingLanguage.find();
+        // ...
+
         // Create an array to store the languages we are looking for
-        let languages = [];
+        // ...
+
         // Loop through all languages
         for (lang of allLanguages) {
             // Check if lang.paradigm includes the paradigm we are looking for. In this case push "lang" into the array
-            if (lang.paradigm.includes(paradigm)) {
-                languages.push(lang);
-            }
+            // ...
         }
-        // Send the array as a json object
-        res.json(languages);
+        // Send the languages array as a json object
+        // ...
+
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -51,14 +53,13 @@ router.get('/frameworks/tutorials/:tutorial/comments', async function(req, res) 
         const tutorial = req.params.tutorial;
         // YOUR CODE
         // Get all frameworks
-        let frameworks = await langFramework.find();
+        // ...
+
         // Loop through all frameworks
         for (framework of frameworks) {
             // Check if framework.tutorial.title is the tutorial we are looking for
-            // In this case, send the framework.tutorial.comments array as a json object
-            if (framework.tutorial.title === tutorial) {
-                return res.json(framework.tutorial.comments);
-            }
+            // In this case, send the framework.tutorial.comments array as a json object and return
+            // ...
         }
         // Tutorial not found. Return a 404 error
         res.status(404).json({ message: 'Tutorial not found' });

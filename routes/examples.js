@@ -1,38 +1,50 @@
 const express = require('express');
-const Framework = require('../../models/framework');
+const ProgrammingLanguage = require('../models/programmingLanguage');
+const Framework = require('../models/framework');
 const router = express.Router();
 
+// Example 1: GET all programming languages
 router.get('/', async function(req, res) {
     if (Object.keys(req.query).length > 0) {
         return res.status(404).json({ message: 'Not Found' });
     }
 
     try {
-        const frameworks = await Framework.find();
-        res.json(frameworks);
+        const languages = await ProgrammingLanguage.find();
+        res.json(languages);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
 
-router.post('/:frameworkId/comments', async function(req, res) {
-    const { frameworkId } = req.params;
-    const { user, comment } = req.body;
-
+// Example 2: GET a programming language by name
+router.get('/:name', async function(req, res) {
     try {
-        const framework = await Framework.findById(frameworkId);
+        const language = await ProgrammingLanguage.findOne({ name: req.params.name });
+        if (!language) {
+            return res.status(404).json({ message: 'Programming language not found' });
+        }
+        res.json(language);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+// Example 3: POST a new comment to a framework identified by its name
+router.post('/:frameworkName/comments', async function(req, res) {
+    try {
+        const framework = await Framework.findOne({ name: req.params.frameworkName });
         if (!framework) {
             return res.status(404).json({ message: 'Framework not found' });
         }
 
         const tutorial = framework.tutorial;
-
         if (!tutorial) {
             return res.status(404).json({ message: 'Tutorial not found' });
         }
 
+        const { user, comment } = req.body;
         tutorial.comments.push({ user, comment, date: new Date() });
-
         await framework.save();
 
         res.status(201).json(framework);
@@ -41,9 +53,10 @@ router.post('/:frameworkId/comments', async function(req, res) {
     }
 });
 
-router.put('/:id', async (req, res) => {
+// Example 4: PUT update the documentation and/or tutorial links of a framework
+router.put('/:name', async (req, res) => {
     try {
-        const framework = await Framework.findById(req.params.id);
+        const framework = await Framework.findOne({ name: req.params.name });
         if (!framework) {
             return res.status(404).json({ message: 'Framework not found' });
         }
