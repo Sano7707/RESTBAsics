@@ -15,7 +15,7 @@ const getAllLanguages = async (req, res) => {
 
 const getLanguageById = async (req, res) => {
     try {
-        const language = await ProgrammingLanguage.findById(req.params.id);
+        const language = await ProgrammingLanguage.findOne({ name: req.params.name });
         if (!language) {
             return res.status(404).json({ message: 'Programming language not found' });
         }
