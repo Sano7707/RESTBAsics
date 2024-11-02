@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const ProgrammingLanguage = require('../../examples/models/programmingLanguage'); // Our model
 const Framework = require('../../examples/models/framework');
-const langFramework = require('../../examples/models/langFramework');
 
 
 // Exercise 1: GET all documentation links for a language
