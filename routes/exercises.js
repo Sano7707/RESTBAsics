@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ProgrammingLanguage = require('../models/programmingLanguage'); // Our model
+const ProgrammingLanguage = require('../models/programmingLanguage');
 const Framework = require('../models/framework');
 
 

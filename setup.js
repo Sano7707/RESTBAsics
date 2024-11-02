@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const ProgrammingLanguage = require('./examples/models/programmingLanguage');
-const Framework = require('./examples/models/framework');
-const LangFramework = require('./examples/models/langFramework');
+const ProgrammingLanguage = require('./models/programmingLanguage');
+const Framework = require('./models/framework');
+
 
 mongoose.connect('mongodb://localhost:27017/RESTbasics')
     .then(() => console.log('Connected to MongoDB'))
@@ -9,6 +9,8 @@ mongoose.connect('mongodb://localhost:27017/RESTbasics')
 
 async function populateDB() {
     await ProgrammingLanguage.deleteMany();
+    await Framework.deleteMany();
+
     await ProgrammingLanguage.insertMany([
         {
             "name": "JavaScript",
@@ -83,239 +85,144 @@ async function populateDB() {
     ]);
     console.log("programming_languages collection created");
 
-    await Framework.deleteMany();
+    // Insert data into the frameworks collection with the language field included
     await Framework.insertMany([
         {
             "name": "Express",
             "documentationLink": "https://expressjs.com/",
+            "language": "JavaScript",
             "tutorial": {
                 "title": "Creating a Web Server with Express",
                 "tutorialLink": "https://expressjs.com/en/starter/hello-world.html",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb34",
-                        "user": "John",
-                        "comment": "Super helpful and easy to follow!",
-                        "date": "2020-01-01T00:00:00.000Z"
-                    },
-                    {
-                        "_id": "6712b93c5a53871b8162bb35",
-                        "user": "Jane",
-                        "comment": "Clear instructions, worked perfectly.",
-                        "date": "2021-06-15T00:00:00.000Z"
-                    }
+                    { "user": "John", "comment": "Super helpful and easy to follow!", "date": "2020-01-01T00:00:00.000Z" },
+                    { "user": "Jane", "comment": "Clear instructions, worked perfectly.", "date": "2021-06-15T00:00:00.000Z" }
                 ]
             }
         },
         {
             "name": "React",
             "documentationLink": "https://react.dev/",
+            "language": "JavaScript",
             "tutorial": {
                 "title": "React Tutorial",
                 "tutorialLink": "https://www.w3schools.com/REACT/DEFAULT.ASP",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb52",
-                        "user": "John",
-                        "comment": "Clear explanation, it is starting to make more sense now.",
-                        "date": "2021-01-01T00:00:00.000Z"
-                    }
+                    { "user": "John", "comment": "Clear explanation, it is starting to make more sense now.", "date": "2021-01-01T00:00:00.000Z" }
                 ]
             }
         },
         {
             "name": "Flask",
             "documentationLink": "https://flask.palletsprojects.com/en/latest/",
+            "language": "Python",
             "tutorial": {
                 "title": "Building a Web App with Flask",
                 "tutorialLink": "https://flask.palletsprojects.com/en/latest/tutorial/",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb36",
-                        "user": "Alice",
-                        "comment": "Simple and effective!",
-                        "date": "2022-03-10T00:00:00.000Z"
-                    }
+                    { "user": "Alice", "comment": "Simple and effective!", "date": "2022-03-10T00:00:00.000Z" }
                 ]
             }
         },
         {
             "name": "Spring Boot",
             "documentationLink": "https://spring.io/projects/spring-boot",
+            "language": "Java",
             "tutorial": {
                 "title": "Building a REST API with Spring Boot",
                 "tutorialLink": "https://spring.io/guides/gs/rest-service/",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb37",
-                        "user": "Charles",
-                        "comment": "Good intro to Spring Boot.",
-                        "date": "2023-08-22T00:00:00.000Z"
-                    }
+                    { "user": "Charles", "comment": "Good intro to Spring Boot.", "date": "2023-08-22T00:00:00.000Z" }
                 ]
             }
         },
         {
             "name": "ASP.NET Core",
             "documentationLink": "https://docs.microsoft.com/en-us/aspnet/core/",
+            "language": "C#",
             "tutorial": {
                 "title": "Building a Web API with ASP.NET Core",
                 "tutorialLink": "https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb38",
-                        "user": "Eve",
-                        "comment": "Very useful for beginners!",
-                        "date": "2024-05-11T00:00:00.000Z"
-                    }
+                    { "user": "Eve", "comment": "Very useful for beginners!", "date": "2024-05-11T00:00:00.000Z" }
                 ]
             }
         },
         {
             "name": "Poco",
             "documentationLink": "https://pocoproject.org/docs/",
+            "language": "C++",
             "tutorial": {
                 "title": "Building a Web Server with Poco",
                 "tutorialLink": "https://pocoproject.org/docs/tutorials.html",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb39",
-                        "user": "Frank",
-                        "comment": "A bit tough but manageable.",
-                        "date": "2021-07-20T00:00:00.000Z"
-                    }
+                    { "user": "Frank", "comment": "A bit tough but manageable.", "date": "2021-07-20T00:00:00.000Z" }
                 ]
             }
         },
         {
             "name": "Ruby on Rails",
             "documentationLink": "https://guides.rubyonrails.org/",
+            "language": "Ruby",
             "tutorial": {
                 "title": "Getting Started with Ruby on Rails",
                 "tutorialLink": "https://guides.rubyonrails.org/getting_started.html",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb3a",
-                        "user": "Grace",
-                        "comment": "The definitive guide to Rails!",
-                        "date": "2023-12-01T00:00:00.000Z"
-                    }
+                    { "user": "Grace", "comment": "The definitive guide to Rails!", "date": "2023-12-01T00:00:00.000Z" }
                 ]
             }
         },
         {
             "name": "Gin",
             "documentationLink": "https://github.com/gin-gonic/gin",
+            "language": "Go",
             "tutorial": {
                 "title": "Building a Web Server with Gin",
                 "tutorialLink": "https://gin-gonic.com/docs/",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb3b",
-                        "user": "Hank",
-                        "comment": "Gin is so fast and easy!",
-                        "date": "2020-09-05T00:00:00.000Z"
-                    }
+                    { "user": "Hank", "comment": "Gin is so fast and easy!", "date": "2020-09-05T00:00:00.000Z" }
                 ]
             }
         },
         {
             "name": "Vapor",
             "documentationLink": "https://vapor.codes/docs",
+            "language": "Swift",
             "tutorial": {
                 "title": "Building a Web App with Vapor",
                 "tutorialLink": "https://docs.vapor.codes/4.0/hello-world/",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb3c",
-                        "user": "Ivy",
-                        "comment": "Perfect for iOS devs learning backend.",
-                        "date": "2022-11-11T00:00:00.000Z"
-                    }
+                    { "user": "Ivy", "comment": "Perfect for iOS devs learning backend.", "date": "2022-11-11T00:00:00.000Z" }
                 ]
             }
         },
         {
             "name": "Rocket",
             "documentationLink": "https://rocket.rs/",
+            "language": "Rust",
             "tutorial": {
                 "title": "Creating a Web Server with Rocket",
                 "tutorialLink": "https://rocket.rs/v0.5-rc/guide/quickstart/",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb3d",
-                        "user": "Jack",
-                        "comment": "Rocket is still in development but great!",
-                        "date": "2021-02-14T00:00:00.000Z"
-                    }
+                    { "user": "Jack", "comment": "Rocket is still in development but great!", "date": "2021-02-14T00:00:00.000Z" }
                 ]
             }
         },
         {
             "name": "Ktor",
             "documentationLink": "https://ktor.io/docs/",
+            "language": "Kotlin",
             "tutorial": {
                 "title": "Building a REST API with Ktor",
                 "tutorialLink": "https://ktor.io/docs/creating-http-apis.html",
                 "comments": [
-                    {
-                        "_id": "6712b93c5a53871b8162bb3e",
-                        "user": "Kate",
-                        "comment": "Awesome and modern!",
-                        "date": "2023-05-30T00:00:00.000Z"
-                    }
+                    { "user": "Kate", "comment": "Awesome and modern!", "date": "2023-05-30T00:00:00.000Z" }
                 ]
             }
         }
     ]);
     console.log("frameworks collection created");
-
-
-    await LangFramework.deleteMany();
-    await LangFramework.insertMany([
-        {
-            language: "JavaScript",
-            frameworks: ["Express", "React"]
-        },
-        {
-            language: "Python",
-            frameworks: ["Flask"]
-        },
-        {
-            language: "Java",
-            frameworks: ["Spring Boot"]
-        },
-        {
-            language: "C#",
-            frameworks: ["ASP.NET Core"]
-        },
-        {
-            language: "C++",
-            frameworks: ["Poco"]
-        },
-        {
-            language: "Ruby",
-            frameworks: ["Ruby on Rails"]
-        },
-        {
-            language: "Go",
-            frameworks: ["Gin"]
-        },
-        {
-            language: "Swift",
-            frameworks: ["Vapor"]
-        },
-        {
-            language: "Rust",
-            frameworks: ["Rocket"]
-        },
-        {
-            language: "Kotlin",
-            frameworks: ["Ktor"]
-        }
-    ]);
-    console.log("LangFramework collection created");
-};
+}
 
 populateDB().then(() => {
     process.exit();

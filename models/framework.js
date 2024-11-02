@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const frameworkSchema = new mongoose.Schema({
   name: { type: String, required: true },
   documentationLink: { type: String, required: true },
+  language : { type: String, required: true },
   tutorial: {
     title: { type: String, required: true },
     tutorialLink: { type: String, required: true },
