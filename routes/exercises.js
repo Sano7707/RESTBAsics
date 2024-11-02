@@ -8,7 +8,8 @@ const Framework = require('../models/framework');
 router.get('/:language/docs', async function(req, res) {
     try {
         const lang = req.params.language;
-        // YOUR CODE
+
+        /* TO DO START */
         // GET a language by name
         // - Mongoose function to use: Model.findOne() (https://mongoosejs.com/docs/api/model.html#Model.findOne())
         // - Example from the documentation: await Adventure.findOne({ country: 'Croatia' }).exec();
@@ -16,6 +17,7 @@ router.get('/:language/docs', async function(req, res) {
 
         // Send the "docs" array of the retrieved language as a json object
         // ...
+        /* TO DO END */
 
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -26,7 +28,7 @@ router.get('/:language/docs', async function(req, res) {
 router.get('/:paradigm', async function(req, res) {
     try {
         const paradigm = req.params.paradigm;
-        // YOUR CODE
+        /* TO DO START */
         // GET all languages (hint: Example 1)
         // ...
 
@@ -40,6 +42,7 @@ router.get('/:paradigm', async function(req, res) {
         }
         // Send the languages array as a json object
         // ...
+        /* TO DO END */
 
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -51,7 +54,8 @@ router.get('/:paradigm', async function(req, res) {
 router.get('/frameworks/tutorials/:tutorial/comments', async function(req, res) {
     try {
         const tutorial = req.params.tutorial;
-        // YOUR CODE
+        
+        /* TO DO START */
         // Get all frameworks
         // ...
 
@@ -61,6 +65,8 @@ router.get('/frameworks/tutorials/:tutorial/comments', async function(req, res) 
             // In this case, send the framework.tutorial.comments array as a json object and return
             // ...
         }
+        /* TO DO END */
+        
         // Tutorial not found. Return a 404 error
         res.status(404).json({ message: 'Tutorial not found' });
     } catch (err) {
