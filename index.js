@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const examplesRoutes = require('./routes/examples');
+const LangExamplesRoutes = require('./routes/examples');
+const FrameworksExamplesRoutes = require('./routes/examples');
 const exercisesRoutes = require('./routes/exercises');
 
 
@@ -13,8 +14,8 @@ mongoose.connect('mongodb://localhost:27017/RESTbasics')
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Failed to connect to MongoDB', err));
 
-app.use('/api/programming-languages', examplesRoutes);
-app.use('/api/frameworks', examplesRoutes);
+app.use('/api/programming-languages', LangExamplesRoutes);
+app.use('/api/frameworks', FrameworksExamplesRoutes);
 app.use('/languages', exercisesRoutes);
 
 app.listen(port, () => {
