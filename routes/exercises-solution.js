@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const ProgrammingLanguage = require('../models/programmingLanguage');
-const Framework = require('../models/framework');
 
 
 // Exercise 1: GET all documentation links for a language
 router.get('/:language/docs', async function(req, res) {
     try {
         const lang = req.params.language;
-        
+
         /* SOLUTION START */
         // GET a language by name
         // - Mongoose function to use: Model.findOne() (https://mongoosejs.com/docs/api/model.html#Model.findOne())
@@ -17,7 +16,7 @@ router.get('/:language/docs', async function(req, res) {
         // Send the "docs" array of the retrieved language as a json object
         res.json(language.docs);
         /* SOLUTION END */
-        
+
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -44,32 +43,6 @@ router.get('/:paradigm', async function(req, res) {
         res.json(languages);
         /* SOLUTION END */
 
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-// Mini-Assignement
-// Get the all comments for a given tutorial
-router.get('/frameworks/tutorials/:tutorial/comments', async function(req, res) {
-    try {
-        const tutorial = req.params.tutorial;
-
-        /* SOLUTION START */
-        // Get all frameworks
-        let frameworks = await Framework.find();
-        // Loop through all frameworks
-        for (framework of frameworks) {
-            // Check if framework.tutorial.title is the tutorial we are looking for
-            // In this case, send the framework.tutorial.comments array as a json object
-            if (framework.tutorial.title === tutorial) {
-                return res.json(framework.tutorial.comments);
-            }
-        }
-        /* SOLUTION END */
-
-        // Tutorial not found. Return a 404 error
-        res.status(404).json({ message: 'Tutorial not found' });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
