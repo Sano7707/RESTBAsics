@@ -48,6 +48,31 @@ router.get('/:paradigm', async function(req, res) {
     }
 });
 
+// Exercise 3: POST the link to a documentation for a language
+router.post('/:language/docs', async function(req, res) {
+    const { link } = req.body;
+    if (!link) {
+        return res.status(400).json({ error: "link is required" });
+    }
+
+    try {
+        /* SOLUTION START */
+        // Find the right language (Model.findOne())
+        // ...
+
+        // Push the link in the language.docs array
+        // ...
+
+        // Save the updated collection
+        // ...
+
+        /* SOLUTION END */
+        res.status(201).json(language.docs);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 
 router.all('*', (req, res) => {
     res.status(404).json({ message: 'Not Found' });
